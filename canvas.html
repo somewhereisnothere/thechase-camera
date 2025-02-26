@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>the chase | canvas 𖹭</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        text-align: center;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        padding: 20px;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+        font-size: 28px;
+      }
+
+      .container {
+        display: flex;
+        align-items: flex-start;
+        gap: 40px;
+        max-width: 100%;
+        padding: 20px;
+      }
+
+      .left-section {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .photo-strip-container {
+        width: 150px;
+        padding: 10px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        background-color: #000000;
+        position: relative;
+        transform: none;
+      }
+
+      .photo-strip {
+        width: 130px;
+        height: 100px;
+      }
+
+      .photo-strip-container p {
+        color: white;
+        font-size: 8px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 8px;
+        letter-spacing: 1px;
+      }
+
+      .color-picker {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .color-picker p {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .color-picker .color-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .color-picker .color-button-row {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .color-picker .color-button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+
+      .color-picker .color-button:hover {
+        transform: scale(1.1);
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .actions button {
+        padding: 10px 20px;
+        font-size: 12px;
+        border: none;
+        cursor: pointer;
+        border-radius: 20px;
+        background-color: #000000;
+        color: #a1c4fd;
+        font-family: "Poppins", sans-serif;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        font-weight: bold;
+      }
+
+      .actions button:hover {
+        background-color: #c2e9fb;
+        color: #000000;
+        transform: scale(1.05);
+      }
+
+      .actions button:active {
+        transform: scale(0.95);
+      }
+
+      #combinedCanvas {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>hiasi photomu!, 사진을 꾸며봐!, 写真を飾ろう！, 美化你的照片！</h1>
+
+    <div class="container">
+      <div class="left-section">
+        <div class="color-picker">
+          <p>pick frame colors:</p>
+          <div class="color-buttons">
+            <div class="color-button-row">
+              <button
+                class="color-button"
+                style="background-color: #f4c2c2"
+                onclick="changeFrameColor('#f4c2c2')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #a2d5f2"
+                onclick="changeFrameColor('#a2d5f2')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #f7d794"
+                onclick="changeFrameColor('#f7d794')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #c8e6c9"
+                onclick="changeFrameColor('#c8e6c9')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #d4a5a5"
+                onclick="changeFrameColor('#d4a5a5')"
+              ></button>
+            </div>
+            <div class="color-button-row">
+              <button
+                class="color-button"
+                style="background-color: #b8e0d2"
+                onclick="changeFrameColor('#b8e0d2')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #f0e6f8"
+                onclick="changeFrameColor('#f0e6f8')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #ffcccb"
+                onclick="changeFrameColor('#ffcccb')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #b2f2bb"
+                onclick="changeFrameColor('#b2f2bb')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #ffd700"
+                onclick="changeFrameColor('#ffd700')"
+              ></button>
+            </div>
+            <div class="color-button-row">
+              <button
+                class="color-button"
+                style="background-color: #6b4226"
+                onclick="changeFrameColor('#6b4226')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #4a4a4a"
+                onclick="changeFrameColor('#4a4a4a')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #2c3e50"
+                onclick="changeFrameColor('#2c3e50')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #34495e"
+                onclick="changeFrameColor('#34495e')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #1e272e"
+                onclick="changeFrameColor('#1e272e')"
+              ></button>
+            </div>
+            <div class="color-button-row">
+              <button
+                class="color-button"
+                style="background-color: #3d3d3d"
+                onclick="changeFrameColor('#3d3d3d')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #555555"
+                onclick="changeFrameColor('#555555')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #2c2c2c"
+                onclick="changeFrameColor('#2c2c2c')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #1a1a1a"
+                onclick="changeFrameColor('#1a1a1a')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #333333"
+                onclick="changeFrameColor('#333333')"
+              ></button>
+            </div>
+            <div class="color-button-row">
+              <button
+                class="color-button"
+                style="background-color: #8b4513"
+                onclick="changeFrameColor('#8b4513')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #483d8b"
+                onclick="changeFrameColor('#483d8b')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #2f4f4f"
+                onclick="changeFrameColor('#2f4f4f')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #800000"
+                onclick="changeFrameColor('#800000')"
+              ></button>
+              <button
+                class="color-button"
+                style="background-color: #556b2f"
+                onclick="changeFrameColor('#556b2f')"
+              ></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button onclick="retakePhotos()">retake</button>
+          <button onclick="downloadPhoto()">save photos</button>
+        </div>
+      </div>
+
+      <div class="photo-strip-container" id="photoFrame">
+        <canvas class="photo-strip" id="photo1"></canvas>
+        <canvas class="photo-strip" id="photo2"></canvas>
+        <canvas class="photo-strip" id="photo3"></canvas>
+        <p>하츠투하츠</p>
+      </div>
+    </div>
+
+    <canvas id="combinedCanvas"></canvas>
+
+    <script>
+      const photoFrame = document.getElementById("photoFrame");
+      function changeFrameColor(color) {
+        photoFrame.style.backgroundColor = color;
+      }
+
+      function loadPhotoFromLocalStorage() {
+        for (let i = 1; i <= 3; i++) {
+          const imageData = localStorage.getItem(`photo${i}`);
+          if (imageData) {
+            const canvas = document.getElementById(`photo${i}`);
+            const ctx = canvas.getContext("2d");
+            const img = new Image();
+            img.src = imageData;
+            img.onload = () => {
+              ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            };
+          }
+        }
+      }
+
+      loadPhotoFromLocalStorage();
+
+      function retakePhotos() {
+        window.location.href = "camera.html";
+      }
+
+      function downloadPhoto() {
+        const photoFrame = document.getElementById("photoFrame");
+
+        const originalTransform = photoFrame.style.transform || "none";
+        photoFrame.style.transform = "none";
+
+        html2canvas(photoFrame, { scale: 2 }).then((canvas) => {
+          let link = document.createElement("a");
+          link.download = "thechase၄၃.png";
+          link.href = canvas.toDataURL();
+          link.click();
+
+          photoFrame.style.transform = originalTransform;
+        });
+      }
+    </script>
+  </body>
+</html>
