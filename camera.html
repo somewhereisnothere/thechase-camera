@@ -3,7 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>the chase camera | camera 𖹭 </title>
+    <title>the chase | camera 𖹭</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
@@ -20,6 +25,7 @@
         align-items: center;
         height: 100vh;
         gap: 20px;
+        position: relative;
       }
 
       .container {
@@ -162,9 +168,25 @@
       #flip-camera-button:active {
         transform: scale(0.9);
       }
+
+      .back-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background-color: transparent;
+        border: none;
+        color: #000000;
+        font-size: 1.5rem;
+        cursor: pointer;
+        text-decoration: none;
+      }
     </style>
   </head>
   <body>
+    <a href="hello.html" class="back-button">
+      <i class="bi bi-arrow-left"></i>
+    </a>
+
     <div class="container">
       <div class="camera-container">
         <p id="countdown">press start to begin</p>
@@ -338,29 +360,6 @@
         doneButton.style.display = "none";
         startButton.style.display = "inline-block";
         countdownText.innerText = "press START to begin";
-      }
-      function captureImage(index) {
-        if (index >= 3) return;
-
-        let canvas = canvases[index];
-        let context = canvas.getContext("2d");
-
-        canvas.width = 200;
-        canvas.height = 150;
-
-        context.filter = currentFilter;
-
-        if (usingFrontCamera) {
-          // Flip gambar untuk kamera depan agar tidak mirror
-          context.translate(canvas.width, 0);
-          context.scale(-1, 1);
-        }
-
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-        // Simpan gambar ke localStorage
-        const imageData = canvas.toDataURL("image/png");
-        localStorage.setItem(`photo${index + 1}`, imageData); 
       }
 
       function doneSession() {
