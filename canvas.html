@@ -3,7 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>the chase camera | canvas 𖹭</title>
+    <title>the chase | canvas 𖹭</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
@@ -31,6 +36,7 @@
         padding: 20px;
         flex-direction: column;
         overflow: hidden;
+        position: relative;
       }
 
       h1 {
@@ -147,9 +153,25 @@
       #combinedCanvas {
         display: none;
       }
+
+      .back-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background-color: transparent;
+        border: none;
+        color: #000000;
+        font-size: 1.5rem;
+        cursor: pointer;
+        text-decoration: none;
+      }
     </style>
   </head>
   <body>
+    <a href="hello.html" class="back-button">
+      <i class="bi bi-arrow-left"></i>
+    </a>
+
     <h1>hiasi photomu!, 사진을 꾸며봐!, 写真を飾ろう！, 美化你的照片！</h1>
 
     <div class="container">
